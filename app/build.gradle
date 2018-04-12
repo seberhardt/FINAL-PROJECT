@@ -2,6 +2,9 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
+    lintOptions {
+        abortOnError false
+    }
     defaultConfig {
         applicationId "com.example.leoconnelly.connexus"
         minSdkVersion 23
@@ -25,4 +28,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation 'com.android.support:design:26.1.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }
+/*
+android {
+    lintOptions {
+        abortOnError false
+    }
+}
+ */

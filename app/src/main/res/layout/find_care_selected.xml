@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <Button
+        android:id="@+id/Address"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_above="@+id/GetDirections"
+        android:layout_alignParentStart="true"
+        android:text="Button" />
+
+
+    <Button
+        android:id="@+id/GetDirections"
+        android:layout_width="match_parent"
+        android:layout_height="34.5dp"
+        android:layout_above="@+id/Call"
+        android:layout_alignParentStart="true"
+        android:text="GetDirections" />
+
+
+    <Button
+        android:id="@+id/Call"
+        android:layout_width="match_parent"
+        android:layout_height="34.5dp"
+        android:layout_above="@+id/VisitWebsite"
+        android:layout_alignParentStart="true"
+        android:text="Button" />
+
+
+    <Button
+        android:id="@+id/VisitWebsite"
+        android:layout_width="match_parent"
+        android:layout_height="34.5dp"
+        android:layout_above="@+id/MoreInfo"
+        android:layout_alignParentStart="true"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/MoreInfo"
+        android:layout_width="match_parent"
+        android:layout_height="34.5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:text="MoreInfo"
+        />
+
+
+</RelativeLayout>
+
+
+
+
