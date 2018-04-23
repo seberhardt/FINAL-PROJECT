@@ -7,16 +7,18 @@
     tools:context="com.example.leoconnelly.connexus.MainActivity">
 
     <ImageButton
-        android:id="@+id/imageButton16"
+        android:id="@+id/VisitWeb"
         android:layout_width="420dp"
         android:layout_height="128dp"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/imageButton18"
+        android:layout_below="@+id/TalkToADocButton"
         android:background="#0000"
         app:srcCompat="@android:color/holo_blue_bright" />
 
+
+
     <ImageButton
-        android:id="@+id/imageButton18"
+        android:id="@+id/TalkToADocButton"
         android:layout_width="420dp"
         android:layout_height="128dp"
         android:layout_alignParentStart="true"
@@ -29,18 +31,29 @@
         android:layout_width="420dp"
         android:layout_height="128dp"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/imageButton13"
+        android:layout_below="@+id/learn"
         android:background="#0000"
         app:srcCompat="@android:color/holo_purple" />
 
     <ImageButton
-        android:id="@+id/imageButton13"
+        android:id="@+id/learn"
         android:layout_width="420dp"
         android:layout_height="128dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:background="#0000"
         app:srcCompat="@android:color/holo_blue_bright" />
+
+    <ImageButton
+        android:id="@+id/learn_Icon"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@mipmap/learn_icon"
+        android:background="@drawable/hs__screenshot_clear"
+
+        />
 
     <TextView
         android:id="@+id/textView"
