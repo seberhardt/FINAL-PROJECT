@@ -10,17 +10,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.TextView;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
  * Created by leoconnelly on 4/10/18.
  */
 
 public class HealthCenterSelectedActivity extends AppCompatActivity {
-
-    private WebView mWebView;
+    MapView mMapView;
+    private GoogleMap googleMap;
+    //private WebView mWebView;
     public static final String KEY_URL = "key_url";
     public static final String KEY_TITLE = "key_title";
     Context mContext;
+    public double lat;
+    public double longi;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +42,40 @@ public class HealthCenterSelectedActivity extends AppCompatActivity {
 
         //if else statement
 
-        //        String title = this.getIntent().getExtras().getString("title");
+        //String title = this.getIntent().getExtras().getString("title");
 
     String nameOfCenterFromIntent = this.getIntent().getExtras().getString("nameOfCenter");
+    lat = this.getIntent().getExtras().getDouble("latitude");
+    longi = this.getIntent().getExtras().getDouble("longitude");
+
         System.out.println(nameOfCenterFromIntent + "beep beep beep beep BEEP BEEP BEEP BEEP BEEP BEEP BEEP BEEP BEEP BEEPBEEP BEEP BEEP BEEPBEEP BEEP BEEP BEEPBEEP BEEP BEEP BEEPBEEP BEEP BEEP BEEP");
 
-        // if
+        mMapView = (MapView) findViewById(R.id.mapView);
+        mMapView.onCreate(savedInstanceState);
+        //if
+        try {
+            MapsInitializer.initialize(this.getApplicationContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        Button addressButton = findViewById(R.id.Address);
+        mMapView.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap mMap) {
+                googleMap = mMap;
+
+                //set location
+                LatLng Bowdoin = new LatLng(lat, longi);
+                googleMap.addMarker(new MarkerOptions().position(Bowdoin).title("Marker Title").snippet("Marker Description"));
+
+                // zoom automatically to the location of the marker
+                CameraPosition cameraPosition = new CameraPosition.Builder().target(Bowdoin).zoom(12).build();
+                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+            }
+        });
+
+
+        TextView address = findViewById(R.id.Address);
         Button GetDirections = findViewById(R.id.GetDirections);
         Button call = findViewById(R.id.Call); //done
         Button visitWebsite = findViewById(R.id.VisitWebsite); //done
@@ -49,8 +88,36 @@ public class HealthCenterSelectedActivity extends AppCompatActivity {
 
         mContext = this;
 
+
+        GetDirections.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+
+                Uri gmmIntentUri = Uri.parse("Google.navigation:q="+lat+","+"long");
+
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+
+                mapIntent.setPackage("com.google.android.apps.maps");
+
+                startActivity(mapIntent);
+
+                // mWebView = findViewById(R.id.detail_web_view);
+                //mWebView.loadUrl("www.youtube.com");
+
+            }
+        });
+
+        address.setText("230 Bowdoin St.");
+
+
+
         if (nameOfCenterFromIntent.equalsIgnoreCase("Bowdoin Health Center")) {
                 System.out.println("TEST TEST TEST TEST TEST ");
+
+            address.setText("230 Bowdoin St.");
+
+
+
 
             call.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -97,6 +164,9 @@ public class HealthCenterSelectedActivity extends AppCompatActivity {
         }
         else if (nameOfCenterFromIntent.equalsIgnoreCase("Dimock Center")) {
 
+            address.setText("230 Bowdoin St.");
+
+
             call.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
 
@@ -133,6 +203,7 @@ public class HealthCenterSelectedActivity extends AppCompatActivity {
 
         }
         else if (nameOfCenterFromIntent.equalsIgnoreCase("BETH ISRAEL DEACONESS MEDICAL CENTER")) {
+
 
 
             call.setOnClickListener(new View.OnClickListener() {
